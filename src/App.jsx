@@ -49,13 +49,13 @@ function MyApp() {
         <p className='pagenum'>
           Page {pageNumber} of {numPages}
         </p>
-        <div>
-          <button onClick={goToPreviousPage} disabled={pageNumber <= 1}>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <Button onClick={goToPreviousPage} disabled={pageNumber <= 1}>
             Previous
-          </button>
-          <button onClick={goToNextPage} disabled={pageNumber >= numPages}>
+          </Button>
+          <Button onClick={goToNextPage} disabled={pageNumber >= numPages}>
             Next
-          </button>
+          </Button>
         </div>
       </div>
     <Clickk/>

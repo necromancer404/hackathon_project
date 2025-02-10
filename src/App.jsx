@@ -4,7 +4,7 @@ import 'react-pdf/dist/esm/Page/TextLayer.css';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import './App.css';
 import Navbar from './navbar'; 
-
+import Clickk from './button';
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
   import.meta.url
@@ -13,7 +13,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 function MyApp() {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [pdfPath, setPdfPath] = useState('/23bce1370.pdf'); // State to manage the selected PDF file
+  const [pdfPath, setPdfPath] = useState('/23bce1370.pdf'); 
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
@@ -58,9 +58,7 @@ function MyApp() {
           </button>
         </div>
       </div>
-      <div className="floating-button" onClick={() => alert('Button clicked!')}>
-        +
-      </div>
+    <Clickk/>
     </div>
   );
 }

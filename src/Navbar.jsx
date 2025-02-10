@@ -3,10 +3,10 @@ import './Navbar.css';
 
 function Navbar({ onPdfSelect }) {
   const pdfFiles = [
-    { name: 'Document 1', path: '/23bce1370.pdf' },
-    { name: 'Document 2', path: '/document2.pdf' },
-    { name: 'Document 3', path: '/document3.pdf' },
-    { name: 'Document 4', path: '/document4.pdf' },
+    { name: '23bce1370', path: '/23bce1370.pdf' },
+    { name: 'os module 1', path: '/os_1.pdf' },
+    { name: 'module 3', path: '/os_3.pdf' },
+    { name: 'ai notes', path: '/ai.pdf' },
     { name: 'Document 5', path: '/document5.pdf' },
   ];
 

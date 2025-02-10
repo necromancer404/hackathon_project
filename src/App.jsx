@@ -13,6 +13,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 function MyApp() {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
+  const [pdfPath, setPdfPath] = useState('/23bce1370.pdf'); // State to manage the selected PDF file
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
@@ -30,12 +31,17 @@ function MyApp() {
     }
   }
 
+  function handlePdfSelect(path) {
+    setPdfPath(path);
+    setPageNumber(1); // Reset to the first page when a new PDF is selected
+  }
+
   return (
     <div className='app'>
-      <Navbar onPdfSelect={(path) => console.log(path)} />
+      <Navbar onPdfSelect={handlePdfSelect} />
       <div className='doc'>
         <Document
-          file="/23bce1370.pdf"
+          file={pdfPath}
           onLoadSuccess={onDocumentLoadSuccess}
         >
           <Page pageNumber={pageNumber} />

@@ -3,6 +3,7 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import './App.css';
+import Navbar from './navbar'; 
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -12,7 +13,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 function MyApp() {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [currentFile, setCurrentFile] = useState('/23bce1370.pdf'); // Default file
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
@@ -30,34 +30,14 @@ function MyApp() {
     }
   }
 
-  function handleFileChange(filePath) {
-    setCurrentFile(filePath);
-    setPageNumber(1); // Reset to the first page when a new file is opened
-  }
-
   return (
     <div className='app'>
-      <div className='list'>
-        <ul style={{listStyleType: "none"}}>
-          <li>
-            <button onClick={() => handleFileChange('/23BCE1370_assesment8.pdf')}>
-              Open PDF2
-            </button>
-          </li>
-          <li>
-            <button onClick={() => handleFileChange('/os_1.pdf')}>
-            Os Module 1
-            </button>
-          </li>
-          <li>
-            <button onClick={() => handleFileChange('/os_3.pdf')}>
-              os module 3
-            </button>
-          </li>
-        </ul>
-      </div>
+      <Navbar onPdfSelect={(path) => console.log(path)} />
       <div className='doc'>
-        <Document file={currentFile} onLoadSuccess={onDocumentLoadSuccess}>
+        <Document
+          file="/23bce1370.pdf"
+          onLoadSuccess={onDocumentLoadSuccess}
+        >
           <Page pageNumber={pageNumber} />
         </Document>
         <p className='pagenum'>

@@ -4,6 +4,7 @@ import 'react-pdf/dist/esm/Page/TextLayer.css';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import './App.css';
 import Navbar from './navbar'; 
+import Button from './Button'; // Import the styled button
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -49,13 +50,13 @@ function MyApp() {
         <p className='pagenum'>
           Page {pageNumber} of {numPages}
         </p>
-        <div>
-          <button onClick={goToPreviousPage} disabled={pageNumber <= 1}>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <Button onClick={goToPreviousPage} disabled={pageNumber <= 1}>
             Previous
-          </button>
-          <button onClick={goToNextPage} disabled={pageNumber >= numPages}>
+          </Button>
+          <Button onClick={goToNextPage} disabled={pageNumber >= numPages}>
             Next
-          </button>
+          </Button>
         </div>
       </div>
       <div className="floating-button" onClick={() => alert('Button clicked!')}>

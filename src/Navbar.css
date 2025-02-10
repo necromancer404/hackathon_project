@@ -25,3 +25,10 @@
 .nav-button:hover {
     background: #777;
 }
+
+.custom-nav-button {
+    width: 250px !important; /* Custom width for navbar buttons */
+}
+h2{
+    text-align: center;
+}

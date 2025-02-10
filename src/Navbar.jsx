@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import './Navbar.css';
+import Button from './Button';
 
 function Navbar({ onPdfSelect }) {
   const pdfFiles = [
@@ -12,16 +12,16 @@ function Navbar({ onPdfSelect }) {
 
   return (
     <div className="navbar">
-      <h2>PDF Documents</h2>
+      <h2 >PDF Documents</h2>
       <div className="nav-buttons">
         {pdfFiles.map((pdf, index) => (
-          <button
+          <Button
             key={index}
             onClick={() => onPdfSelect(pdf.path)}
-            className="nav-button"
+            className="nav-button custom-nav-button"
           >
             {pdf.name}
-          </button>
+          </Button>
         ))}
       </div>
     </div>

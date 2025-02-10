@@ -1,0 +1,153 @@
+/* General Layout */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+  }
+  
+  .forum-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Search Bar */
+  .search-bar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .search-bar input {
+    padding: 10px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+ .drop{
+    margin-left: 35%;
+
+ } 
+  /* Center Content */
+  .center-content {
+    display: flex;
+    margin-top: 5%;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;           
+    justify-content: center;
+  }
+  
+  .content-wrapper {
+    width: 30%;
+  }
+  
+  /* Forum Title */
+  .forum-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Create Post */
+  .create-post {
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: black;
+    padding-bottom: 5px;
+  }
+  
+  .create-post h3 {
+    margin-bottom: 10px;
+    margin-left: 40%;
+  }
+  
+  .create-post input,
+  .create-post textarea {
+    padding: 5%;
+    width: 50%;
+    margin-bottom: 10px;
+    margin-left: 20%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .create-post button {
+    padding:  10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 40%;
+  }
+  
+  .create-post .category-options label {
+    margin-left: -20%;
+  }
+  
+  /* Posts */
+  .post {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #000000;
+  }
+  
+  .post h4 {
+    margin-bottom: 10px;
+  }
+  
+  .post p {
+    margin: 5px 0;
+  }
+  
+  .post .post-actions button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .post .post-actions .like {
+    background: #28a745;
+    color: white;
+  }
+  
+  .post .post-actions .answer {
+    background: #007bff;
+    color: white;
+  }
+  
+  /* Answers */
+  .answers {
+    margin-top: 10px;
+    padding-left: 20px;
+  }
+  
+  .answers h5 {
+    margin-bottom: 10px;
+  }
+  
+  .answers p {
+    background: #000000;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+  
+  /* Answer Input */
+  .answer-input textarea {
+    padding: 10px;
+    width: 100%;
+    height: 60px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  

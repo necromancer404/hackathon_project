@@ -3,6 +3,7 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import './App.css';
+import Navbar from './navbar'; 
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -29,32 +30,31 @@ function MyApp() {
     }
   }
 
-
   return (
     <div className='app'>
+      <Navbar onPdfSelect={(path) => console.log(path)} />
       <div className='doc'>
-      <Document
-        file="/23bce1370.pdf"
-        onLoadSuccess={onDocumentLoadSuccess}
-      >
-        <Page pageNumber={pageNumber} />
-      </Document>
-      <p className='pagenum'>
-        Page {pageNumber} of {numPages}
-      </p>
-      <div>
-        <button onClick={goToPreviousPage} disabled={pageNumber <= 1}>
-          Previous
-        </button>
-        <button onClick={goToNextPage} disabled={pageNumber >= numPages}>
-          Next
-        </button>
-      </div>
+        <Document
+          file="/23bce1370.pdf"
+          onLoadSuccess={onDocumentLoadSuccess}
+        >
+          <Page pageNumber={pageNumber} />
+        </Document>
+        <p className='pagenum'>
+          Page {pageNumber} of {numPages}
+        </p>
+        <div>
+          <button onClick={goToPreviousPage} disabled={pageNumber <= 1}>
+            Previous
+          </button>
+          <button onClick={goToNextPage} disabled={pageNumber >= numPages}>
+            Next
+          </button>
+        </div>
       </div>
       <div className="floating-button" onClick={() => alert('Button clicked!')}>
-  +
-</div>
-
+        +
+      </div>
     </div>
   );
 }

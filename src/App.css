@@ -1,23 +1,67 @@
-body{
-  background-color: bisque;
-}
-.app {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  position: relative;
+body {
+  background-color: #404040;
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
 
+.app {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Navbar Styling */
+.navbar {
+  width: 250px;
+  height: 100vh;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  overflow-y: auto;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-button {
+  background: #555;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.nav-button:hover {
+  background: #777;
+}
+
+/* Main Content Styling */
+.main-content {
+  flex-grow: 1;
+  margin-left: 250px; /* Make space for navbar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Document Viewer */
 .doc {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  margin-left: 40%;
 }
 
 .pagenum {
@@ -33,20 +77,21 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #007bff;
-  color: white;
+  background-color: #fed9b7;
+  color: black;
   transition: background-color 0.3s;
 }
 
 button:disabled {
-  background-color: #b0c4de;
+  background-color: gray;
   cursor: not-allowed;
 }
 
 button:hover:not(:disabled) {
-  background-color: #0056b3;
+  background-color: #f3edda;
 }
 
+/* Floating Button */
 .floating-button {
   position: fixed;
   bottom: 20px;
@@ -71,62 +116,23 @@ button:hover:not(:disabled) {
   background-color: #0056b3;
 }
 
-
+/* Responsive Styling */
 @media (max-width: 768px) {
-  .app {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    overflow: hidden;
+  .navbar {
+    width: 200px;
   }
+
+  .main-content {
+    margin-left: 200px;
+  }
+
   .doc {
     width: 100%;
-    margin-bottom: 20px;
+    padding: 10px;
   }
-.react-pdf__Page {
-    transform: scale(0.6);
+
+  .react-pdf__Page {
+    transform: scale(0.8);
     transform-origin: top center;
-  }
-  .pagenum {
-    position: absolute;
-    margin-top: 55%;
-    font-size: 16px;
-    text-align: center;
-  }
-  
-  button {
-    position: absolute;
-    margin-top: -80%;
-    font-size: 14px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    transition: background-color 0.3s;
-  }
-  .floating-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: #007bff;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-  }
-  
-  .floating-button:hover {
-    transform: scale(1.1);
-    background-color: #0056b3;
   }
 }

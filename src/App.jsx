@@ -38,10 +38,20 @@ function MyApp() {
   return (
     <div className='app'>
       <div className='list'>
-        <ul>
+        <ul style={{listStyleType: "none"}}>
           <li>
             <button onClick={() => handleFileChange('/23BCE1370_assesment8.pdf')}>
               Open PDF2
+            </button>
+          </li>
+          <li>
+            <button onClick={() => handleFileChange('/os_1.pdf')}>
+            Os Module 1
+            </button>
+          </li>
+          <li>
+            <button onClick={() => handleFileChange('/os_3.pdf')}>
+              os module 3
             </button>
           </li>
         </ul>

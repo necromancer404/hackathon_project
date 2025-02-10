@@ -10,8 +10,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@langchain/ollama": "^0.1.6",
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security",
+    "lucide-react": "^0.475.0",
+    "path": "^0.12.7",
+    "pdf-parse": "^1.1.1",
+    "pptx-parser": "^1.1.7-beta.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-draggable": "^4.4.6",
     "react-pdf": "^9.2.1",
     "styled-components": "^6.1.15"
   },

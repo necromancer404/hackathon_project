@@ -150,4 +150,18 @@ body {
     border: 1px solid #ccc;
     margin-bottom: 10px;
   }
-  
+  .filter-bar {
+    padding-top: 20px; /* Add padding to the top */
+    padding-left: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+  select{
+    width: 175px;
+    height: 30px;
+  }
+  button{
+    width: 120px;
+  }
+  /* Other existing styles */

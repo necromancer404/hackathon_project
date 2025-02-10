@@ -85,9 +85,14 @@ export default function Forum() {
   return (
     <StyledForumContainer>
       {/* Filter Bar */}
+      <div className="domainFilter">
+      <p>Filter by domain</p>
+      </div>
       <div className="filter-bar">
         <Radio onChange={(value) => setFilterCategory(value)} />
       </div>
+      
+        
       {/* Search Bar */}
       <div className="search-bar">
         <input
@@ -157,8 +162,7 @@ export default function Forum() {
                       }
                       style={{
                         cursor: "pointer",
-                        textDecoration: "underline",
-                        color: "blue",
+                        color: "white",
                       }}
                     >
                       {post.content}{" "}
@@ -167,7 +171,7 @@ export default function Forum() {
                       </span>
                     </h4>
                     <p>
-                      <strong>Category:</strong> {post.category}
+                      <strong>Domain:</strong> {post.category}
                     </p>
                     {/* Answers */}
                     {expandedPost === post.id && (

@@ -7,7 +7,6 @@ const Chatbox = () => {
   const [position, setPosition] = useState({ x: 50, y: 50 });
   const [size, setSize] = useState({ width: 400, height: 300 });
   const draggingRef = useRef(false);
-  const resizingRef = useRef(false);
   const offset = useRef({ x: 0, y: 0 });
 
   const startDrag = (e) => {
@@ -15,28 +14,15 @@ const Chatbox = () => {
     offset.current = { x: e.clientX - position.x, y: e.clientY - position.y };
   };
 
-  const startResize = (e) => {
-    e.stopPropagation();
-    resizingRef.current = true;
-    offset.current = { x: e.clientX, y: e.clientY };
-  };
-
   useEffect(() => {
     const onMouseMove = (e) => {
       if (draggingRef.current) {
         setPosition({ x: e.clientX - offset.current.x, y: e.clientY - offset.current.y });
-      } else if (resizingRef.current) {
-        setSize((prev) => ({
-          width: Math.max(200, prev.width + (e.clientX - offset.current.x)),
-          height: Math.max(150, prev.height + (e.clientY - offset.current.y)),
-        }));
-        offset.current = { x: e.clientX, y: e.clientY };
       }
     };
 
     const stopActions = () => {
       draggingRef.current = false;
-      resizingRef.current = false;
     };
 
     window.addEventListener("mousemove", onMouseMove);
@@ -47,6 +33,13 @@ const Chatbox = () => {
       window.removeEventListener("mouseup", stopActions);
     };
   }, []);
+
+  const adjustSize = (change) => {
+    setSize((prev) => ({
+      width: Math.max(300, prev.width + change),
+      height: Math.max(200, prev.height + change),
+    }));
+  };
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -71,13 +64,7 @@ const Chatbox = () => {
   };
 
   const formatMessage = (text) => {
-    return text
-      .replace(/```(\w+)?\n([\s\S]*?)```/g, (match, lang, code) => {
-        return `<pre style="background: #1e1e1e; color: #f8f8f2; padding: 10px; border-radius: 5px; overflow-x: auto;"><code class="language-${lang || "plaintext"}">${code}</code></pre>`;
-      })
-      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-      .replace(/\$(.*?)\$/g, "<span style='color: #ffcc00; font-style: italic;'>$1</span>")
-      .replace(/\n/g, "<br>");
+    return text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>").replace(/\n/g, "<br>");
   };
 
   const handleKeyDown = (e) => {
@@ -92,42 +79,103 @@ const Chatbox = () => {
         top: `${position.y}px`,
         width: `${size.width}px`,
         height: `${size.height}px`,
-        border: "1px solid #444",
+        border: "1px solid #b350b0",
         borderRadius: "8px",
-        backgroundColor: "#222",
-        color: "#fff",
-        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)",
+        backgroundColor: "#1b1b26",
+        color: "#d4d4d4",
+        boxShadow: "0px 0px 10px rgba(179, 80, 176, 0.3)",
         display: "flex",
         flexDirection: "column",
       }}
     >
-      <div style={{ background: "#444", padding: "10px", textAlign: "center", fontWeight: "bold", cursor: "move" }} onMouseDown={startDrag}>
-        AI Tutor Chatbox
+      <div
+        style={{
+          background: "#2b2b39",
+          padding: "10px",
+          textAlign: "center",
+          fontWeight: "bold",
+          cursor: "move",
+          color: "#b350b0",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+        onMouseDown={startDrag}
+      >
+        <span>AI Tutor Chatbox</span>
+        <div>
+          <button style={buttonStyle} onClick={() => adjustSize(20)}>➕</button>
+          <button style={buttonStyle} onClick={() => adjustSize(-20)}>➖</button>
+        </div>
       </div>
-      <div style={{ flexGrow: 1, overflowY: "auto", padding: "10px", backgroundColor: "#333", display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          flexGrow: 1,
+          overflowY: "auto",
+          padding: "10px",
+          backgroundColor: "#21212e",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         {messages.map((msg, index) => (
-          <div key={index} style={{
-            background: msg.sender === "User" ? "#007bff" : "#555",
-            padding: "8px",
-            borderRadius: "5px",
-            marginBottom: "5px",
-            color: "#fff",
-            maxWidth: "80%",
-            alignSelf: msg.sender === "User" ? "flex-end" : "flex-start",
-            whiteSpace: "pre-line",
-          }}
-          dangerouslySetInnerHTML={{ __html: msg.text }}></div>
+          <div
+            key={index}
+            style={{
+              background: msg.sender === "User" ? "#5b3a99" : "#343449",
+              padding: "8px",
+              borderRadius: "5px",
+              marginBottom: "5px",
+              color: "#d4d4d4",
+              maxWidth: "80%",
+              alignSelf: msg.sender === "User" ? "flex-end" : "flex-start",
+              whiteSpace: "pre-line",
+            }}
+            dangerouslySetInnerHTML={{ __html: msg.text }}
+          ></div>
         ))}
-        {isTyping && <div style={{ fontStyle: "italic", color: "#aaa" }}>AI is typing...</div>}
+        {isTyping && <div style={{ fontStyle: "italic", color: "#b350b0" }}>AI is typing...</div>}
       </div>
-      <div style={{ display: "flex", padding: "5px", backgroundColor: "#222" }}>
-        <button style={{ marginRight: "5px", padding: "8px", background: "#28a745", color: "#fff", border: "none", borderRadius: "5px" }} onClick={() => setSize({ width: size.width + 20, height: size.height + 20 })}>➕</button>
-        <button style={{ marginRight: "5px", padding: "8px", background: "#dc3545", color: "#fff", border: "none", borderRadius: "5px" }} onClick={() => setSize({ width: Math.max(200, size.width - 20), height: Math.max(150, size.height - 20) })}>➖</button>
-        <input style={{ flex: 1, padding: "8px", borderRadius: "5px", border: "1px solid #555", backgroundColor: "#444", color: "#fff" }} value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={handleKeyDown} placeholder="Ask AI Tutor..." />
-        <button style={{ marginLeft: "5px", padding: "8px", background: "#007bff", color: "#fff", border: "none", borderRadius: "5px" }} onClick={sendMessage}>Send</button>
+      <div style={{ display: "flex", padding: "5px", backgroundColor: "#1b1b26" }}>
+        <input
+          style={inputStyle}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="Ask AI Tutor..."
+        />
+        <button style={sendButtonStyle} onClick={sendMessage}>Send</button>
       </div>
     </div>
   );
+};
+
+const buttonStyle = {
+  background: "#b350b0",
+  color: "#d4d4d4",
+  border: "none",
+  padding: "5px 10px",
+  margin: "0 3px",
+  borderRadius: "5px",
+  cursor: "pointer",
+};
+
+const inputStyle = {
+  flex: 1,
+  padding: "8px",
+  borderRadius: "5px",
+  border: "1px solid #b350b0",
+  backgroundColor: "#2b2b39",
+  color: "#d4d4d4",
+};
+
+const sendButtonStyle = {
+  marginLeft: "5px",
+  padding: "8px",
+  background: "#b350b0",
+  color: "#d4d4d4",
+  border: "none",
+  borderRadius: "5px",
+  cursor: "pointer",
 };
 
 export default Chatbox;
